@@ -9,6 +9,11 @@
   body {
     @apply bg-[#EEEFEA] text-[#19202F] font-sans antialiased;
     -webkit-tap-highlight-color: transparent;
+    background-image: radial-gradient(#2A374D 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
+    background-color: #EEEFEA;
+    opacity: 1;
   }
 }
 
@@ -24,4 +29,17 @@
 ::-webkit-scrollbar-thumb {
   background: rgba(42, 55, 77, 0.1);
   border-radius: 10px;
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+}
+
+.mesh-gradient {
+  background: 
+    radial-gradient(at 0% 0%, rgba(42, 55, 77, 1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(214, 92, 37, 0.15) 0, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(42, 55, 77, 0.8) 0, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(46, 139, 87, 0.1) 0, transparent 50%);
+  background-color: #2A374D;
 }

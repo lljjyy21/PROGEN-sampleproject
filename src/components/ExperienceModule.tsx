@@ -20,12 +20,12 @@ export const ExperienceModule: React.FC<ExperienceModuleProps> = ({ experiences 
   const visibleExperiences = isExpanded ? experiences : experiences.slice(0, displayCount);
 
   return (
-    <div className="bg-white mx-4 mt-4 p-5 rounded-2xl shadow-sm border border-black/5">
+    <div className="bg-white/70 backdrop-blur-md mx-4 mt-4 p-6 rounded-[32px] shadow-sm border border-white/40">
       <SectionHeader title="服务经历" icon={<History className="w-4 h-4 text-[#9F9F9C]" />} />
       
-      <div className="space-y-6 relative">
+      <div className="space-y-8 relative">
         {/* Timeline Line */}
-        <div className="absolute left-2 top-2 bottom-2 w-0.5 bg-[#D9D9D9] rounded-full" />
+        <div className="absolute left-[11px] top-2 bottom-2 w-[1px] bg-gradient-to-b from-[#2A374D] via-[#D9D9D9] to-transparent" />
         
         <AnimatePresence mode="popLayout">
           {visibleExperiences.map((exp, index) => (
@@ -34,36 +34,34 @@ export const ExperienceModule: React.FC<ExperienceModuleProps> = ({ experiences 
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -10 }}
-              className="relative pl-8"
+              className="relative pl-10"
             >
               {/* Timeline Dot */}
-              <div className="absolute left-0 top-1.5 w-4 h-4 bg-white border-2 border-[#2A374D] rounded-full z-10" />
+              <div className="absolute left-0 top-1.5 w-6 h-6 bg-white border-2 border-[#2A374D] rounded-full z-10 flex items-center justify-center shadow-sm">
+                <div className="w-2 h-2 bg-[#2A374D] rounded-full" />
+              </div>
               
-              <div className="mb-1 flex items-center justify-between">
-                <span className="text-[#D65C25] text-xs font-bold tracking-tight">
-                  {exp.startDate} - {exp.endDate}
-                </span>
-                <span className="bg-[#EEEFEA] text-[#2A374D] px-2 py-0.5 rounded text-[10px] font-bold uppercase">
-                  {exp.role}
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-[#D65C25] text-[10px] font-black tracking-widest uppercase">
+                  {exp.startDate} — {exp.endDate}
                 </span>
               </div>
               
-              <h3 className="text-[#19202F] text-sm font-bold mb-1 leading-tight">
-                {exp.organizationName}
-              </h3>
-              
-              <div className="space-y-2">
-                <p className="text-[#9F9F9C] text-xs leading-relaxed">
-                  <span className="font-bold text-[#19202F]/60">服务对象：</span>{exp.targetGroup}
-                </p>
-                <p className="text-[#19202F]/80 text-xs leading-relaxed">
-                  {exp.description}
-                </p>
-                <div className="bg-[#EEEFEA]/50 p-2 rounded-lg border-l-2 border-[#D65C25]">
-                  <p className="text-[#D65C25] text-[11px] font-bold mb-0.5 uppercase tracking-wide">项目亮点</p>
-                  <p className="text-[#19202F] text-xs leading-relaxed font-medium">
-                    {exp.highlights}
+              <div className="bg-white p-4 rounded-2xl border border-black/5 shadow-sm">
+                <h3 className="text-[#19202F] text-sm font-black mb-1 leading-tight">
+                  {exp.organizationName}
+                </h3>
+                <p className="text-[#2A374D] text-[10px] font-bold uppercase tracking-wider mb-3">{exp.role}</p>
+                
+                <div className="space-y-3">
+                  <p className="text-[#19202F]/60 text-xs leading-relaxed">
+                    <span className="font-black text-[#19202F]">服务对象：</span>{exp.targetGroup}
                   </p>
+                  <div className="bg-[#EEEFEA]/50 p-3 rounded-xl border-l-4 border-[#D65C25]">
+                    <p className="text-[#19202F] text-xs leading-relaxed font-medium italic">
+                      “{exp.highlights}”
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -74,12 +72,12 @@ export const ExperienceModule: React.FC<ExperienceModuleProps> = ({ experiences 
       {hasMore && (
         <button 
           onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full mt-6 py-2.5 flex items-center justify-center gap-1 text-[#2A374D] text-xs font-bold border border-[#D9D9D9] rounded-xl active:bg-[#EEEFEA] transition-colors"
+          className="w-full mt-8 py-3 flex items-center justify-center gap-2 text-[#2A374D] text-xs font-black border border-black/10 rounded-2xl active:scale-95 transition-all bg-white shadow-sm"
         >
           {isExpanded ? (
             <>收起更多经历 <ChevronUp className="w-4 h-4" /></>
           ) : (
-            <>展开更多经历 ({experiences.length - displayCount}) <ChevronDown className="w-4 h-4" /></>
+            <>查看更多经历 ({experiences.length - displayCount}) <ChevronDown className="w-4 h-4" /></>
           )}
         </button>
       )}
